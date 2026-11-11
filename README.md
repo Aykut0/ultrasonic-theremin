@@ -8,7 +8,7 @@ A classic theremin is sensitive to humidity, nearby objects and electrical noise
 
 ![Display while playing](docs/images/oled_display.png)
 
-An ESP32 runs FreeRTOS with three tasks: one reads the sensors, one generates audio and one draws the display. Moving-average and exponential filters smooth the distance readings so the pitch glides instead of jumping. A direct digital synthesis oscillator with an ADSR envelope makes the tone, which goes out through the ESP32's sigma-delta modulator to an amplifier and speaker.
+An ESP32 runs FreeRTOS with three tasks: one reads the sensors, one generates audio and one draws the display. Moving-average and exponential filters smooth the distance readings so the pitch glides instead of jumping. A direct digital synthesis oscillator reads a sine table to make the tone, which goes out through the ESP32's built-in DAC to an amplifier and speaker. The final report describes a variant with an ADSR envelope and sigma-delta output.
 
 ![System block diagram](docs/images/block_diagram.png)
 
@@ -18,6 +18,10 @@ An ESP32 runs FreeRTOS with three tasks: one reads the sensors, one generates au
 |---|---|
 | ![Schematic](docs/images/schematic.png) | ![PCB render](docs/images/pcb_render.png) |
 
+After the course I modeled a 3D-printable enclosure for it in Blender: a two-piece case that snaps together without screws, with windows for the two ultrasonic modules (pitch on the left, volume on the right), the OLED, and three knobs for tone, range and level. The knobs are a proposal for the next version; the current firmware does not read them yet. The case has not been printed or fit-tested yet.
+
+![Enclosure design, rendered from the Blender model](docs/images/enclosure_render.jpg)
+
 ![Project poster](docs/images/poster.jpg)
 
 ## Files
@@ -25,6 +29,7 @@ An ESP32 runs FreeRTOS with three tasks: one reads the sensors, one generates au
 ```
 firmware/main/ultrasonic_theremin.c   ESP-IDF application: FreeRTOS tasks, DDS, filters
 docs/                                 final report, poster, proposal, images
+mechanical/                           Blender enclosure model and printable STL shells
 ```
 
 ## Build

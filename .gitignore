@@ -1,2 +1,4 @@
 build/
 sdkconfig.old
+# local design-study drafts (not published)
+docs/design-study/
